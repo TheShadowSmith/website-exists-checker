@@ -1,15 +1,19 @@
 const express = require('express')
 const router = express.Router()
-const ping = require('ping');
+const domainPing = require('domain-ping')
 
 
 router.get('/url/:url', (req, res) => {
 
   const url = req.params.url;
 
-  ping.sys.probe(url, (isActive) => {
-    res.send(isActive ? true : false);
-  })
+  domainPing(url)
+    .then(response => {
+      res.send(response)
+    })
+    .catch(error => {
+      res.send(error)
+    })
 
 })
 

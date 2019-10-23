@@ -11,8 +11,8 @@
   "author": "Shadow Smith",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
-    "ping": "^0.2.2"
+    "domain-ping": "^0.1.10",
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
