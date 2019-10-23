@@ -3,7 +3,7 @@ new Vue({
   data() {
     return {
       url: '',
-      endpoint: 'http://localhost:7000',
+      endpoint: 'https://website-exists-checker.herokuapp.com',
     }
   },
   methods: {
