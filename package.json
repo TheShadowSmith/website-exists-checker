@@ -1,0 +1,20 @@
+{
+  "name": "website-exists-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index",
+    "start": "node index"
+  },
+  "keywords": [],
+  "author": "Shadow Smith",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ping": "^0.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
