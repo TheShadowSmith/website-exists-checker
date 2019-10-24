@@ -1,41 +1,41 @@
-var express = require('express')
-const path = require('path')
-const app = express()
-const domainPing = require('domain-ping')
+var express = require("express");
+const path = require("path");
+const app = express();
+const domainPing = require("domain-ping");
 
-app.use(express.json())
-app.use(express.urlencoded({
-  extended: false
-}))
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: false
+  })
+);
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, "public")));
 
-app.post('/', (req, res) => {
+app.post("/", (req, res) => {
+  let url = req.body.url;
 
-  let url = req.body.url
+  const includesProtocol = url.includes("https://") || url.includes("http://");
 
-  const includesHttps = url.includes('https://')
-  const includesHttp = url.includes('http://')
-  const includesWww = url.includes('www.')
+  if (includesProtocol) {
+    url = url.split("/")[2];
+  }
 
-  if (includesHttps) {
-    url = url.replace('https://', '')
-  } else if (includesHttp) {
-    url = url.replace('http://', '')
-  } else if (includesWww) {
-    url = url.replace('www.', '')
+  const includesWww = url.includes("www.");
+
+  if (includesWww) {
+    url = url.replace("www.", "");
   }
 
   domainPing(url)
     .then(response => {
-      res.send(response)
+      res.send(response);
     })
     .catch(error => {
-      res.send(error)
-    })
+      res.send(error);
+    });
+});
 
-})
+const PORT = process.env.PORT || 7000;
 
-const PORT = process.env.PORT || 7000
-
-app.listen(PORT, () => console.log(`Running on port ${PORT}.`))
+app.listen(PORT, () => console.log(`Running on port ${PORT}.`));
