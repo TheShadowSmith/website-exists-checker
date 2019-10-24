@@ -1,38 +1,38 @@
 new Vue({
-  el: '#app',
+  el: "#app",
   data() {
     return {
-      url: '',
+      url: "",
       isVisible: false
-    }
+    };
   },
   methods: {
     urlActiveCheck() {
+      this.isVisible = true;
 
-      this.isVisible = true
-
-      axios.post('https://website-exists-checker.herokuapp.com/', {
-        url: this.url
-      }).then(result => {
-        if (result.data.success) {
-          M.toast({
-            html: `${this.url} exists!`
-          });
-        } else {
-          if (result.data.error.includes('ENOTFOUND')) {
+      axios
+        .post("https://website-exists-checker.herokuapp.com", {
+          url: this.url
+        })
+        .then(result => {
+          if (result.data.success) {
             M.toast({
-              html: `${this.url} doesn't exist!`
+              html: `${result.data.domain} exists at ${result.data.ip}!`
             });
           } else {
-            M.toast({
-              html: `${result.data.error}`
-            });
+            if (result.data.error.includes("ENOTFOUND")) {
+              M.toast({
+                html: `${this.url} doesn't exist!`
+              });
+            } else {
+              M.toast({
+                html: `${result.data.error}`
+              });
+            }
           }
-        }
 
-        this.isVisible = false
-
-      })
+          this.isVisible = false;
+        });
     }
   }
-})
+});
