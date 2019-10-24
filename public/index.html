@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,22 +12,27 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+
 <body>
   <div id="app">
-      <div class="progress" :class="{ visible: isVisible }">
-          <div class="indeterminate"></div>
-      </div>
-      <div class="form-container">
-        <form>
-            <div class="input-field">
-              <input id="url" v-model="url" type="text">
-              <label for="url">Enter a web address</label>
-            </div>      
-            <button class="waves-effect waves-light btn orange accent-4
+    <div class="progress" :class="{ visible: isVisible }">
+      <div class="indeterminate"></div>
+    </div>
+    <div class="form-container">
+      <form>
+        <div class="input-field">
+          <input id="url" v-model="url" type="text">
+          <label for="url">Enter a web address</label>
+        </div>
+        <button class="waves-effect waves-light btn orange accent-4
             " @click.prevent="urlActiveCheck">Check website existence</button>
-          </form>
+      </form>
+      <div class="logo-container">
+        <img v-if="logo !== ''" :src="logo">
       </div>
+    </div>
   </div>
   <script src="main.js"></script>
 </body>
+
 </html>

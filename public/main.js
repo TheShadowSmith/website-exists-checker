@@ -3,12 +3,14 @@ new Vue({
   data() {
     return {
       url: "",
-      isVisible: false
+      isVisible: false,
+      logo: ""
     };
   },
   methods: {
     urlActiveCheck() {
       this.isVisible = true;
+      this.logo = "";
 
       axios
         .post("https://website-exists-checker.herokuapp.com", {
@@ -19,6 +21,7 @@ new Vue({
             M.toast({
               html: `${result.data.domain} exists at ${result.data.ip}!`
             });
+            this.logo = result.data.logo;
           } else {
             if (result.data.error.includes("ENOTFOUND")) {
               M.toast({
@@ -28,6 +31,7 @@ new Vue({
               M.toast({
                 html: `${result.data.error}`
               });
+              this.logo = result.data.logo;
             }
           }
 

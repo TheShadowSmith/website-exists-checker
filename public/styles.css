@@ -24,11 +24,16 @@ body {
 
 .form-container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 form {
+  width: 400px;
+  margin-bottom: 16px;
+}
+
+.logo-container {
   width: 400px;
 }
 
