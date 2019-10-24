@@ -3,7 +3,6 @@ new Vue({
   data() {
     return {
       url: '',
-      endpoint: 'http://localhost:7000',
       isVisible: false
     }
   },
@@ -12,7 +11,7 @@ new Vue({
 
       this.isVisible = true
 
-      axios.post('http://localhost:7000', {
+      axios.post('https://website-exists-checker.herokuapp.com/', {
         url: this.url
       }).then(result => {
         if (result.data.success) {
